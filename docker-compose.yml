@@ -1,22 +1,11 @@
 version: '3'
 services:
-    client:
-        stdin_open: true
-        build:
-          dockerfile: Dockerfile.dev
-          context: ./client
-        volumes:
-          - /app/node_modules
-          - ./client:/app
-
     postgres:
         image: 'postgres:latest'
         environment:
             - POSTGRES_PASSWORD=postgres_password
-
     redis:
         image: 'redis:latest'
-
     api:
         build:
             dockerfile: Dockerfile.dev
@@ -32,7 +21,14 @@ services:
             - PGDATABASE=postgres
             - PGPASSWORD=postgres_password
             - PGPORT=5432
-
+    client:
+        stdin_open: true
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./client
+        volumes:
+            - /app/node_modules
+            - ./client:/app
     worker:
         environment:
             - REDIS_HOST=redis
@@ -43,7 +39,6 @@ services:
         volumes:
             - /app/node_modules
             - ./worker:/app
-
     nginx:
         build:
             dockerfile: Dockerfile.dev
