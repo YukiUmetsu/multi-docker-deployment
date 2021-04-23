@@ -5,19 +5,19 @@ services:
   - docker
 
 before_install:
-  - docker build -t yukiumetsudocker/multi-docker-deployment -f ./client/Dockerfile.dev ./client
+  - docker build -t yukiumetsudock/multi-docker-deployment -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true yukiumetsudocker/multi-docker-deployment npm run test
+  - docker run -e CI=true yukiumetsudock/multi-docker-deployment npm run test
 
 after_success
-  - docker build -t yukiumetsu/multi-docker-client ./client
-  - docker build -t yukiumetsu/multi-docker-nginx ./nginx
-  - docker build -t yukiumetsu/multi-docker-server ./server
-  - docker build -t yukiumetsu/multi-docker-worker ./worker
+  - docker build -t yukiumetsudock/multi-docker-client ./client
+  - docker build -t yukiumetsudock/multi-docker-nginx ./nginx
+  - docker build -t yukiumetsudock/multi-docker-server ./server
+  - docker build -t yukiumetsudock/multi-docker-worker ./worker
 
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-- docker push yukiumetsu/multi-docker-client
-- docker push yukiumetsu/multi-docker-nginx
-- docker push yukiumetsu/multi-docker-server
-- docker push yukiumetsu/multi-docker-worker
+- docker push yukiumetsudock/multi-docker-client
+- docker push yukiumetsudock/multi-docker-nginx
+- docker push yukiumetsudock/multi-docker-server
+- docker push yukiumetsudock/multi-docker-worker
