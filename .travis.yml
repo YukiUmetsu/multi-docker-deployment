@@ -15,8 +15,9 @@ after_success
   - docker build -t yukiumetsu/multi-docker-nginx ./nginx
   - docker build -t yukiumetsu/multi-docker-server ./server
   - docker build -t yukiumetsu/multi-docker-worker ./worker
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push yukiumetsu/multi-docker-client
-  - docker push yukiumetsu/multi-docker-nginx
-  - docker push yukiumetsu/multi-docker-server
-  - docker push yukiumetsu/multi-docker-worker
+
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+- docker push yukiumetsu/multi-docker-client
+- docker push yukiumetsu/multi-docker-nginx
+- docker push yukiumetsu/multi-docker-server
+- docker push yukiumetsu/multi-docker-worker
