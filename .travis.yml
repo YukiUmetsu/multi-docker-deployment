@@ -11,12 +11,12 @@ script:
   - docker run -e CI=true yukiumetsu/multi-docker-deployment npm run test
 
 after_success:
-  - docker build -t yukiumetsu/multi-docker-client ./front
-  - docker build -t yukiumetsu/multi-docker-nginx ./nginx
-  - docker build -t yukiumetsu/multi-docker-server ./server
-  - docker build -t yukiumetsu/multi-docker-worker ./worker
+  - docker build -t yukiumetsudock/multi-docker-client ./front
+  - docker build -t yukiumetsudock/multi-docker-nginx ./nginx
+  - docker build -t yukiumetsudock/multi-docker-server ./server
+  - docker build -t yukiumetsudock/multi-docker-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push yukiumetsu/multi-docker-client
-  - docker push yukiumetsu/multi-docker-nginx
-  - docker push yukiumetsu/multi-docker-server
-  - docker push yukiumetsu/multi-docker-worker
+  - docker push yukiumetsudock/multi-docker-client
+  - docker push yukiumetsudock/multi-docker-nginx
+  - docker push yukiumetsudock/multi-docker-server
+  - docker push yukiumetsudock/multi-docker-worker
