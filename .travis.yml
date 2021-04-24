@@ -5,13 +5,13 @@ services:
   - docker
 
 before_install:
-  - docker build -t yukiumetsudock/multi-docker-deployment -f ./client/Dockerfile.dev ./client
+  - docker build -t yukiumetsudock/multi-docker-deployment -f ./front/Dockerfile.dev ./front
 
 script:
   - docker run -e CI=true yukiumetsudock/multi-docker-deployment npm run test
 
 after_success
-  - docker build -t yukiumetsudock/multi-docker-client ./client
+  - docker build -t yukiumetsudock/multi-docker-client ./front
   - docker build -t yukiumetsudock/multi-docker-nginx ./nginx
   - docker build -t yukiumetsudock/multi-docker-server ./server
   - docker build -t yukiumetsudock/multi-docker-worker ./worker
