@@ -11,7 +11,7 @@ script:
   - docker run -e CI=true yukiumetsu/multi-docker-deployment npm run test
 
 after_success:
-  - docker build -t yukiumetsudock/multi-docker-client ./front
+  - docker build -t yukiumetsudock/multi-docker-client ./client
   - docker build -t yukiumetsudock/multi-docker-nginx ./nginx
   - docker build -t yukiumetsudock/multi-docker-server ./server
   - docker build -t yukiumetsudock/multi-docker-worker ./worker
