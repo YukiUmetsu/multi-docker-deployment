@@ -20,3 +20,15 @@ after_success:
   - docker push yukiumetsudock/multi-docker-nginx
   - docker push yukiumetsudock/multi-docker-server
   - docker push yukiumetsudock/multi-docker-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'multi-docker'
+  env: 'Multidocker-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-085618038075'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
