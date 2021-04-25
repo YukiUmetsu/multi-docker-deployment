@@ -25,10 +25,10 @@ services:
         stdin_open: true
         build:
             dockerfile: Dockerfile.dev
-            context: ./front
+            context: ./client
         volumes:
             - /app/node_modules
-            - ./front:/app
+            - ./client:/app
     worker:
         environment:
             - REDIS_HOST=redis
