@@ -11,15 +11,17 @@ script:
   - docker run -e CI=true yukiumetsu/multi-docker-deployment npm run test
 
 after_success:
-  - docker build -t yukiumetsudock/multi-docker-client ./client
   - docker build -t yukiumetsudock/multi-docker-nginx ./nginx
   - docker build -t yukiumetsudock/multi-docker-server ./server
   - docker build -t yukiumetsudock/multi-docker-worker ./worker
+  - docker build -t yukiumetsudock/multi-docker-client ./client
+  # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push yukiumetsudock/multi-docker-client
+  # Take those images and push them to docker hub
   - docker push yukiumetsudock/multi-docker-nginx
   - docker push yukiumetsudock/multi-docker-server
   - docker push yukiumetsudock/multi-docker-worker
+  - docker push yukiumetsudock/multi-docker-client
 
 deploy:
   provider: elasticbeanstalk
